@@ -11,7 +11,7 @@ const productStore = useProductStore()
 <template>
   <div class="product">
     <img :src="product.image" alt="product.name" class="product__image" />
-    <button class="product__info" @click="productStore.addToCart(product); console.log(productStore.cartProducts)">
+    <button class="product__info" @click="productStore.addToCart(product)">
       <p class="product__name">{{ product.name }}</p>
       <p class="product__price">{{ `${product.price} PLN` }}</p>
       <p class="product__VAT">+ VAT 23%</p>
