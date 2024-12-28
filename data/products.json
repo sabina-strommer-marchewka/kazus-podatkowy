@@ -2,41 +2,49 @@
     {
         "id": 0,
         "name": "Kazus Podatkowy 1(6)2019",
-        "image": "./src/assets/green-book.png"
+        "image": "./src/assets/green-book.png",
+        "price": 98.76
     },
     {
         "id": 1,
         "name": "Kazus Podatkowy 1(6)2019",
-        "image": "./src/assets/green-book.png"
+        "image": "./src/assets/green-book.png",
+        "price": 98.76
     },
     {
         "id": 2,
         "name": "Procedury administracyjne i podatkowe 2",
-        "image": "./src/assets/red-book.png"
+        "image": "./src/assets/red-book.png",
+        "price": 98.76
     },
     {
         "id": 3,
         "name": "Prawo Pomocy Publicznej",
-        "image": "./src/assets/grey-book.png"
+        "image": "./src/assets/grey-book.png",
+        "price": 98.76
     },
     {
         "id": 4,
         "name": "Kazus Podatkowy 1(6)2019",
-        "image": "./src/assets/green-book.png"
+        "image": "./src/assets/green-book.png",
+        "price": 98.76
     },
     {
         "id": 5,
         "name": "Prawo Pomocy Publicznej",
-        "image": "./src/assets/grey-book.png"
+        "image": "./src/assets/grey-book.png",
+        "price": 98.76
     },
     {
         "id": 6,
         "name": "Procedury administracyjne i podatkowe 2",
-        "image": "./src/assets/red-book.png"
+        "image": "./src/assets/red-book.png",
+        "price": 98.76
     },
     {
         "id": 7,
         "name": "Prawo Pomocy Publicznej",
-        "image": "./src/assets/grey-book.png"
+        "image": "./src/assets/grey-book.png",
+        "price": 98.76
     }
 ]

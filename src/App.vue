@@ -1,18 +1,12 @@
 <script setup>
-import { computed } from 'vue'
-import { useProductStore } from '@/stores/products'
-const store = useProductStore()
-const products = computed(() => store.products)
+import ProductGrid from './components/ProductGrid.vue'
 </script>
 
 <template>
-  <header>
-    <div v-for="product in products" :key="product.id">
-      <img :src="product.image" alt="product.name" />
-      <p>{{ product.name }}</p>
-    </div>
-  </header>
-  <main></main>
+  <header></header>
+  <main>
+    <ProductGrid />
+  </main>
 </template>
 
 <style lang="scss">
