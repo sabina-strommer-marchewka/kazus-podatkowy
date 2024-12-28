@@ -11,8 +11,8 @@ const products = computed(() => store.products)
     <h2 class="product-grid__heading">Wyszukaj czasopismo</h2>
     <div class="product-grid__product-container">
       <Product
-        v-for="product in products"
-        :key="product.id"
+        v-for="(product, index) in products"
+        :key="index"
         :product="product"
         class="product-grid__item"
       />
@@ -34,6 +34,8 @@ const products = computed(() => store.products)
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 2rem;
+    column-gap: 57px;
+    row-gap: 53.05px;
   }
   &__item {
     width: 25%;

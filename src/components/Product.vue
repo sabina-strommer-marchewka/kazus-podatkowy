@@ -4,16 +4,14 @@ const props = defineProps({
 })
 import { useProductStore } from '@/stores/products'
 
-const store = useProductStore()
-function addToCart(product) {
-  store.addToCart(product)
-}
+const productStore = useProductStore()
+
 </script>
 
 <template>
   <div class="product">
     <img :src="product.image" alt="product.name" class="product__image" />
-    <button class="product__info" @click="addToCart(product)">
+    <button class="product__info" @click="productStore.addToCart(product); console.log(productStore.cartProducts)">
       <p class="product__name">{{ product.name }}</p>
       <p class="product__price">{{ `${product.price} PLN` }}</p>
       <p class="product__VAT">+ VAT 23%</p>
@@ -42,11 +40,11 @@ function addToCart(product) {
     align-items: center;
     text-align: center;
     padding: 23px;
-    margin-bottom: 53.05px;
     border: 1px solid transparent;
+    transition: all 0.2s;
     &:hover {
       border: 1px solid var(--gold);
-      box-shadow: 20px 20px 40px var(--shadow);
+      box-shadow: 20px 20px 40px var(--darkShadow);
     }
   }
   &__name {
