@@ -1,8 +1,13 @@
 import { defineStore } from 'pinia'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import productData from '../../data/products.json'
 
 export const useProductStore = defineStore('ProductStore', () => {
-    const products = computed(() => productData)
-    return { products }
-  })
+  const products = computed(() => productData)
+  const cartProducts = ref([])
+  function addToCart(product) {
+    cartProducts.value.push(product)
+  }
+
+  return { products, cartProducts, addToCart }
+})

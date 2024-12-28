@@ -1,9 +1,12 @@
 <script setup>
 import ProductGrid from './components/ProductGrid.vue'
+import Cart from './components/Cart.vue'
 </script>
 
 <template>
-  <header></header>
+  <header>
+    <Cart />
+  </header>
   <main>
     <ProductGrid />
   </main>
