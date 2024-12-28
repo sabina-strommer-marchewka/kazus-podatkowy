@@ -6,7 +6,7 @@ import TheWelcome from './components/TheWelcome.vue'
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
+    <h2 class="teal">TEAL</h2>
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
     </div>
@@ -17,7 +17,8 @@ import TheWelcome from './components/TheWelcome.vue'
   </main>
 </template>
 
-<style scoped>
+<style lang="scss">
+@use './styles/styles.scss';
 header {
   line-height: 1.5;
 }
@@ -43,5 +44,9 @@ header {
     place-items: flex-start;
     flex-wrap: wrap;
   }
+}
+
+.teal {
+  color: var(--teal);
 }
 </style>
