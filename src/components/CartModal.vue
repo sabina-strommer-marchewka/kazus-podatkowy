@@ -1,6 +1,6 @@
 <script setup>
 import CartProduct from './CartProduct.vue'
-import BaseIcon from './BaseIcon.vue'
+import IconButton from './IconButton.vue'
 import { useProductStore } from '@/stores/products'
 import { useCartModalStore } from '@/stores/cartModal'
 import { computed } from 'vue'
@@ -46,21 +46,31 @@ onMounted(() => {
     aria-labelledby="dialogTitle"
     :class="classes"
   >
-  <div class="cart-modal__container">
-    <p id="dialogTitle" class="cart-modal__title">Twój koszyk</p>
-    <button class="cart-modal__close" @click="cartModalStore.toggleCartModal('hidden')">
-      <BaseIcon filename="cancel" color="var(--white)" width="15" height="15" />
-    </button>
-    <div class="cart-modal__product-list">
-    <CartProduct
-      v-for="(product, index) in cartProducts"
-      :key="index"
-      :index="index"
-      :product="product"
-      class="cart-modal__item"
-    />
-  </div>
-  </div>
+    <div class="cart-modal__container">
+      <p id="dialogTitle" class="cart-modal__title">Twój koszyk</p>
+      <IconButton
+        icon-name="cancel"
+        icon-color="var(--white)"
+        :icon-width="15"
+        :icon-height="15"
+        bg-color="var(--teal)"
+        :bg-width="41"
+        :bg-height="41"
+        :is-rounded="false"
+        aria-label="Wyjdź z koszyka"
+        class="cart-modal__close"
+        @click="cartModalStore.toggleCartModal('hidden')"
+      />
+      <div class="cart-modal__product-list">
+        <CartProduct
+          v-for="(product, index) in cartProducts"
+          :key="index"
+          :index="index"
+          :product="product"
+          class="cart-modal__item"
+        />
+      </div>
+    </div>
     <div v-if="!noProducts" class="cart-modal__summary">
       <div class="cart-modal__summary-container">
         <span class="cart-modal__summary-title">Łączna kwota</span>
@@ -72,7 +82,6 @@ onMounted(() => {
       <button class="cart-modal__cart">Przejdź do koszyka</button>
       <p v-if="noProducts">Twój koszyk jest pusty</p>
     </div>
-
   </div>
 </template>
 
@@ -91,12 +100,15 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &--visible {
     animation: slideIn 0.4s forwards;
   }
+
   &--hidden {
     animation: slideOut 0.4s forwards;
   }
+
   &__overlay {
     position: fixed;
     top: 0;
@@ -108,26 +120,32 @@ onMounted(() => {
     z-index: 1;
     pointer-events: none;
     transition: opacity 0.4s;
+
     &--visible {
       opacity: 60%;
     }
   }
+
   &__product-list {
     display: flex;
     flex-direction: column;
     gap: 11px;
   }
+
   &__container {
     padding: 19px 32px 20px 28px;
   }
+
   &__title {
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 16px;
   }
+
   &__summary {
     border-top: 1px solid var(--darkGrey);
     padding: 25px 34px 28px;
+
     &-container {
       display: flex;
       justify-content: space-between;
@@ -135,55 +153,56 @@ onMounted(() => {
       padding-bottom: 18px;
       position: relative;
     }
+
     &-price {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     &-title {
       font-weight: 700;
     }
+
     &-total {
       font-size: 22px;
       font-weight: 900;
     }
+
     &_vat {
       font-size: 14px;
       font-weight: 300;
     }
   }
+
   &__cart {
     text-transform: uppercase;
     background-color: var(--gold);
     color: var(--white);
-    font-size: 16px;
     padding-top: 16px;
     padding-bottom: 16px;
     width: 100%;
+    letter-spacing: 2.4px;
   }
+
   &__close {
-    background-color: var(--teal);
-    width: 41px;
-    height: 41px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: absolute;
     top: 0;
     right: 0;
   }
 }
 
-
 @keyframes slideIn {
   100% {
     top: 90px;
   }
 }
+
 @keyframes slideOut {
   0% {
     top: 90px;
   }
+
   100% {
     top: -764px;
   }

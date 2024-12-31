@@ -6,6 +6,7 @@ const props = defineProps({
 import { useProductStore } from '@/stores/products'
 import BaseIcon from './BaseIcon.vue'
 import { computed } from 'vue'
+import IconButton from './IconButton.vue'
 const productStore = useProductStore()
 const width = computed(() => {
   return props.product.icon === 'book' ? 31 : 21
@@ -21,20 +22,27 @@ console.log(props.product)
     <div class="cart-product__info">
       <div class="cart-product__info-wrapper">
         <div class="cart-product__info-badge">
-        <BaseIcon :filename="product.icon" color="var(--teal)" :width="width" :height="height" />
-      </div>
+          <BaseIcon :filename="product.icon" color="var(--teal)" :width="width" :height="height" />
+        </div>
         <p class="cart-product__info-name">{{ product.name }}</p>
       </div>
-
-        <button aria-label="Usuń produkt z koszyka" @click="productStore.removeFromCart(index)">
-          <BaseIcon filename="bin" color="var(--darkGrey)" width="13" height="17" />
-        </button>
-
+      <IconButton
+        icon-name="bin"
+        icon-color="var(--darkGrey)"
+        :icon-width="13"
+        :icon-height="17"
+        bg-color="transparent"
+        :bg-width="40"
+        :bg-height="40"
+        :is-rounded="false"
+        aria-label="Usuń produkt z koszyka"
+        @click="productStore.removeFromCart(index)"
+      />
     </div>
-<div class="cart-product__price">
-  <span class="cart-product__price-title">Cena</span>
-  <span class="cart-product__price-price">{{ product.price }}</span>
-</div>
+    <div class="cart-product__price">
+      <span class="cart-product__price-title">Cena</span>
+      <span class="cart-product__price-price">{{ product.price }}</span>
+    </div>
   </div>
 </template>
 
@@ -54,23 +62,23 @@ console.log(props.product)
       gap: 13px;
     }
     &-badge {
-    background-color: var(--snow);
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  &-name {
-    text-overflow: ellipsis;
-    font-weight: 600;
-    max-width: 178px;
-  }
+      background-color: var(--snow);
+      min-width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &-name {
+      text-overflow: ellipsis;
+      font-weight: 600;
+      max-width: 178px;
+    }
   }
   &__price {
     padding: 14px 21px 17px 23px;
-    display:flex;
+    display: flex;
     justify-content: space-between;
     &-title {
       font-size: 14px;
@@ -81,6 +89,5 @@ console.log(props.product)
       font-weight: 900;
     }
   }
-  
 }
 </style>
