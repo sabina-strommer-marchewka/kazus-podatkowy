@@ -12,10 +12,12 @@ const productStore = useProductStore()
   <div class="product">
     <img :src="product.image" alt="product.name" class="product__image" />
     <button class="product__info" @click="productStore.addToCart(product)">
-      <p class="product__name">{{ product.name }}</p>
+      <span class="product__name">{{ product.name }}</span>
+     <span>
       <p class="product__price">{{ `${product.price} PLN` }}</p>
-      <p class="product__VAT">+ VAT 23%</p>
+      <p class="product__vat">+ VAT 23%</p>
       <P class="product__details">Szczegóły</P>
+     </span>
     </button>
   </div>
 </template>
@@ -36,33 +38,39 @@ const productStore = useProductStore()
     height: 261px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
     padding: 23px;
+    padding-top: 85px;
     border: 1px solid transparent;
     transition: all 0.2s;
+    border: 1px solid var(--gold);
     &:hover {
       border: 1px solid var(--gold);
       box-shadow: 20px 20px 40px var(--darkShadow);
     }
   }
   &__name {
-    margin-bottom: 31px;
+    font-size: 16px;
   }
   &__price {
     margin-bottom: 20px;
+    font-size: 22px;
   }
   &__name,
   &__price {
-    font-size: 18px;
+    font-weight: 900;
   }
-  &__VAT {
+  &__vat {
     font-size: 14px;
     margin-bottom: 14px;
+    font-weight: 300;
   }
   &__details {
     font-size: 16px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
   }
 }
 </style>

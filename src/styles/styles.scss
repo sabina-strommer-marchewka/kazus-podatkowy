@@ -1,5 +1,10 @@
+@use '/src/styles/fonts.scss';
+
 :root {
   font-size: 16px;
+  font-family: var(--font-primary);
+  --font-primary: 'roboto';
+  --font-secondary: 'aktiv-grotesk';
 
   --white: #ffffff;
   --teal: #0a655e;

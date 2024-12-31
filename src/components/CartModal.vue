@@ -122,6 +122,7 @@ onMounted(() => {
   }
   &__title {
     font-size: 22px;
+    font-weight: 700;
     margin-bottom: 16px;
   }
   &__summary {
@@ -140,13 +141,15 @@ onMounted(() => {
       align-items: center;
     }
     &-title {
-      font-size: 16px;
+      font-weight: 700;
     }
     &-total {
       font-size: 22px;
+      font-weight: 900;
     }
     &_vat {
       font-size: 14px;
+      font-weight: 300;
     }
   }
   &__cart {

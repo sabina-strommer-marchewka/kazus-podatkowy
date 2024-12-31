@@ -74,9 +74,11 @@ console.log(props.product)
     justify-content: space-between;
     &-title {
       font-size: 14px;
+      font-weight: 300;
     }
     &-price {
       font-size: 18px;
+      font-weight: 900;
     }
   }
   

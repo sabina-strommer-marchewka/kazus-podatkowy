@@ -27,6 +27,7 @@ const products = computed(() => store.products)
   &__heading {
     font-size: 2.625rem;
     margin-bottom: 88.49px;
+    font-weight: 900;
   }
   &__product-container {
     display: grid;
