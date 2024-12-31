@@ -1,6 +1,7 @@
 <script setup>
 import Cart from '../components/Cart.vue'
 import IconButton from '../components/IconButton.vue'
+import Wrapper from './Wrapper.vue'
 import { ref } from 'vue'
 
 const links = ref([
@@ -16,7 +17,7 @@ const links = ref([
 
 <template>
   <nav aria-label="Główna nawigacja" class="navbar">
-    <div class="navbar__wrapper">
+    <Wrapper class="navbar__wrapper">
       <img src="../assets/logo.png" alt="Strona główna Kazus" class="navbar__logo" />
       <div class="navbar__list-wrapper">
         <ul class="navbar__links" aria-label="Linki głównej nawigacji">
@@ -62,7 +63,7 @@ const links = ref([
           </li>
         </ul>
       </div>
-    </div>
+    </Wrapper>
   </nav>
 </template>
 

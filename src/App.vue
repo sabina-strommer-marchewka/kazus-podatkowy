@@ -1,5 +1,6 @@
 <script setup>
 import ProductGrid from './components/ProductGrid.vue'
+import Hero from './components/Hero.vue'
 import CartModal from './components/CartModal.vue'
 import TheNavbar from './components/TheNavbar.vue'
 </script>
@@ -9,6 +10,7 @@ import TheNavbar from './components/TheNavbar.vue'
     <TheNavbar />
   </header>
   <main class="main">
+    <Hero />
     <ProductGrid />
     <CartModal />
   </main>
