@@ -1,12 +1,12 @@
 <script setup>
 import ProductGrid from './components/ProductGrid.vue'
 import CartModal from './components/CartModal.vue'
-import Cart from './components/Cart.vue'
+import TheNavbar from './components/TheNavbar.vue'
 </script>
 
 <template>
   <header>
-    <Cart />
+    <TheNavbar />
   </header>
   <main class="main">
     <ProductGrid />
