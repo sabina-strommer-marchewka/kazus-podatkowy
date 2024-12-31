@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useProductStore } from '@/stores/products'
 import Product from './Product.vue'
+import Pagination from './Pagination.vue'
 const store = useProductStore()
 const products = computed(() => store.products)
 </script>
@@ -10,12 +11,9 @@ const products = computed(() => store.products)
   <div class="product-grid">
     <h2 class="product-grid__heading">Wyszukaj czasopismo</h2>
     <div class="product-grid__product-container">
-      <Product
-        v-for="(product, index) in products"
-        :key="index"
-        :product="product"
-      />
+      <Product v-for="(product, index) in products" :key="index" :product="product" />
     </div>
+    <Pagination />
   </div>
 </template>
 

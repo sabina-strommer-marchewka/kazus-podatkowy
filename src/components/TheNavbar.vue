@@ -20,7 +20,7 @@ const links = ref([
       <img src="../assets/logo.png" alt="Strona główna Kazus" class="navbar__logo" />
       <div class="navbar__list-wrapper">
         <ul class="navbar__links" aria-label="Linki głównej nawigacji">
-          <li v-for="link in links">
+          <li v-for="(link, index) in links" :key="index">
             <a
               :href="link.url"
               :aria-current="link.current ? 'page' : null"
@@ -87,7 +87,7 @@ const links = ref([
   &__list-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 61px;
   }
   &__logo {
     width: 167px;
