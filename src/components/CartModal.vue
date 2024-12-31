@@ -1,5 +1,6 @@
 <script setup>
 import CartProduct from './CartProduct.vue'
+import BaseIcon from './BaseIcon.vue'
 import { useProductStore } from '@/stores/products'
 import { useCartModalStore } from '@/stores/cartModal'
 import { computed } from 'vue'
@@ -29,6 +30,11 @@ const overlayClasses = computed(() => {
     'cart-modal__overlay--visible': cartModalState.value === 'visible',
   }
 })
+
+const noProducts = computed(() => cartProducts.value.length === 0)
+onMounted(() => {
+  console.log(cartProducts.value)
+})
 </script>
 
 <template>
@@ -40,10 +46,12 @@ const overlayClasses = computed(() => {
     aria-labelledby="dialogTitle"
     :class="classes"
   >
-    <p id="dialogTitle">Twój koszyk</p>
+  <div class="cart-modal__container">
+    <p id="dialogTitle" class="cart-modal__title">Twój koszyk</p>
     <button class="cart-modal__close" @click="cartModalStore.toggleCartModal('hidden')">
-      Zamknij
+      <BaseIcon filename="cancel" color="var(--white)" width="15" height="15" />
     </button>
+    <div class="cart-modal__product-list">
     <CartProduct
       v-for="(product, index) in cartProducts"
       :key="index"
@@ -51,11 +59,20 @@ const overlayClasses = computed(() => {
       :product="product"
       class="cart-modal__item"
     />
-    <div>
-      <span>Łączna kwota</span>
-      <span>{{ totalPrice }}</span>
-      <span>+ VAT 23%</span>
+  </div>
+  </div>
+    <div v-if="!noProducts" class="cart-modal__summary">
+      <div class="cart-modal__summary-container">
+        <span class="cart-modal__summary-title">Łączna kwota</span>
+        <div class="cart-modal__summary-price">
+          <span class="cart-modal__summary-total">{{ totalPrice }}</span>
+          <span class="cart-modal__summary-vat">+ VAT 23%</span>
+        </div>
+      </div>
+      <button class="cart-modal__cart">Przejdź do koszyka</button>
+      <p v-if="noProducts">Twój koszyk jest pusty</p>
     </div>
+
   </div>
 </template>
 
@@ -64,13 +81,16 @@ const overlayClasses = computed(() => {
   position: absolute;
   top: -764px;
   right: 365px;
-  background-color: var(--snow);
+  background-color: var(--white);
   width: 381px;
   height: 674px;
   box-shadow: 5px 5px 15px var(--greenShadow);
   z-index: 2;
   overflow-y: auto;
   opacity: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &--visible {
     animation: slideIn 0.4s forwards;
   }
@@ -92,7 +112,65 @@ const overlayClasses = computed(() => {
       opacity: 60%;
     }
   }
+  &__product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  &__container {
+    padding: 19px 32px 20px 28px;
+  }
+  &__title {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  &__summary {
+    border-top: 1px solid var(--darkGrey);
+    padding: 25px 34px 28px;
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 18px;
+      position: relative;
+    }
+    &-price {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &-title {
+      font-size: 16px;
+    }
+    &-total {
+      font-size: 22px;
+    }
+    &_vat {
+      font-size: 14px;
+    }
+  }
+  &__cart {
+    text-transform: uppercase;
+    background-color: var(--gold);
+    color: var(--white);
+    font-size: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    width: 100%;
+  }
+  &__close {
+    background-color: var(--teal);
+    width: 41px;
+    height: 41px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
+
 
 @keyframes slideIn {
   100% {
