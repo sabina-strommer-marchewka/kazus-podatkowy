@@ -32,6 +32,7 @@ const productStore = useProductStore()
     height: 190px;
     margin-bottom: -4rem;
     z-index: 1;
+    pointer-events: none;
   }
   &__info {
     width: 286px;
@@ -45,10 +46,10 @@ const productStore = useProductStore()
     padding-top: 85px;
     border: 1px solid transparent;
     transition: all 0.2s;
-    border: 1px solid var(--gold);
     &:hover {
       border: 1px solid var(--gold);
       box-shadow: 20px 20px 40px var(--darkShadow);
+      color: var(--gold);
     }
   }
   &__name {

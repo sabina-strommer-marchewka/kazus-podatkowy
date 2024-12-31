@@ -4,7 +4,6 @@ import IconButton from './IconButton.vue'
 import { useProductStore } from '@/stores/products'
 import { useCartModalStore } from '@/stores/cartModal'
 import { computed } from 'vue'
-import { onMounted } from 'vue'
 const productStore = useProductStore()
 const cartModalStore = useCartModalStore()
 const cartProducts = computed(() => productStore.cartProducts)
@@ -32,9 +31,6 @@ const overlayClasses = computed(() => {
 })
 
 const noProducts = computed(() => cartProducts.value.length === 0)
-onMounted(() => {
-  console.log(cartProducts.value)
-})
 </script>
 
 <template>
@@ -70,6 +66,7 @@ onMounted(() => {
           class="cart-modal__item"
         />
       </div>
+      <p v-if="noProducts">Twój koszyk jest pusty.</p>
     </div>
     <div v-if="!noProducts" class="cart-modal__summary">
       <div class="cart-modal__summary-container">
@@ -80,14 +77,13 @@ onMounted(() => {
         </div>
       </div>
       <button class="cart-modal__cart">Przejdź do koszyka</button>
-      <p v-if="noProducts">Twój koszyk jest pusty</p>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .cart-modal {
-  position: absolute;
+  position: fixed;
   top: -764px;
   right: 365px;
   background-color: var(--white);
