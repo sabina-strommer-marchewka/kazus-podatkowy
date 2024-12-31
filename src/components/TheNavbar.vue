@@ -58,28 +58,17 @@ const links = ref([
             />
           </li>
           <li>
-            <IconButton
-              icon-name="cart"
-              icon-color="var(--black)"
-              :icon-width="20"
-              :icon-height="20"
-              bg-color="transparent"
-              :bg-width="40"
-              :bg-height="40"
-              :is-rounded="false"
-              aria-label="Otwórz koszyk"
-            />
+            <Cart />
           </li>
         </ul>
       </div>
-
-      <Cart />
     </div>
   </nav>
 </template>
 
 <style lang="scss" scoped>
 .navbar {
+  display: flex;
   height: 90px;
   background-color: var(--white);
   border: 1px solid var(--snow);

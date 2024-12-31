@@ -2,22 +2,47 @@
 import { useProductStore } from '@/stores/products'
 import { useCartModalStore } from '@/stores/cartModal'
 import { computed } from 'vue'
+import IconButton from '../components/IconButton.vue'
+import Badge from '../components/Badge.vue'
 const productStore = useProductStore()
 const cartModalStore = useCartModalStore()
 
 const cartProducts = computed(() => productStore.cartProducts)
-
 </script>
 
 <template>
-  <button class="cart" aria-live="polite" @click="cartModalStore.toggleCartModal('visible')">
-    <span class="visually-hidden"> {{ 'Ilość produktów w koszyku' }}</span>
-    <span> {{ cartProducts.length }} </span>
-  </button>
+  <span class="cart">
+    <IconButton
+      icon-name="cart"
+      icon-color="var(--black)"
+      :icon-width="20"
+      :icon-height="20"
+      bg-color="transparent"
+      :bg-width="40"
+      :bg-height="40"
+      :is-rounded="false"
+      aria-label="Otwórz koszyk"
+      @click="cartModalStore.toggleCartModal('visible')"
+    />
+    <Badge
+      :content="cartProducts.length"
+      bg-color="var(--teal)"
+      color="var(--white)"
+      class="cart__badge"
+    />
+    <span class="visually-hidden" aria-live="polite">
+      {{ `Ilość produktów w koszyku ${cartProducts.length}` }}</span
+    >
+  </span>
 </template>
 
 <style lang="scss" scoped>
 .cart {
-  padding: 2rem;
+  position: relative;
+  &__badge {
+    position: absolute;
+    top: 7px;
+    right: 3px;
+  }
 }
 </style>
