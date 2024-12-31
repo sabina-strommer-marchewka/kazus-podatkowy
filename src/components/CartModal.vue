@@ -17,6 +17,13 @@ const totalPrice = computed(() => {
     .toFixed(2)
   return parseFloat(sum).toFixed(2)
 })
+const totalPriceInteger = computed(() => {
+  return totalPrice.value.split('.')[0]
+})
+
+const totalPriceDecimal = computed(() => {
+  return totalPrice.value.split('.')[1]
+})
 
 const classes = computed(() => {
   return {
@@ -72,7 +79,10 @@ const noProducts = computed(() => cartProducts.value.length === 0)
       <div class="cart-modal__summary-container">
         <span class="cart-modal__summary-title">Łączna kwota</span>
         <div class="cart-modal__summary-price">
-          <span class="cart-modal__summary-total">{{ totalPrice }}</span>
+          <span>
+            <span class="cart-modal__summary-integer">{{ `${totalPriceInteger},` }}</span>
+            <span class="cart-modal__summary-decimal">{{ `${totalPriceDecimal} PLN` }}</span>
+          </span>
           <span class="cart-modal__summary-vat">+ VAT 23%</span>
         </div>
       </div>
@@ -154,14 +164,19 @@ const noProducts = computed(() => cartProducts.value.length === 0)
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 4px;
     }
 
     &-title {
       font-weight: 700;
     }
 
-    &-total {
+    &-integer {
       font-size: 22px;
+      font-weight: 900;
+    }
+    &-decimal {
+      font-size: 16px;
       font-weight: 900;
     }
 

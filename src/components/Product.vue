@@ -3,9 +3,12 @@ const props = defineProps({
   product: Object,
 })
 import { useProductStore } from '@/stores/products'
+import { computed } from 'vue'
 
 const productStore = useProductStore()
-
+const formattedPrice = computed(() => {
+  return props.product.price.toFixed(2).replace('.', ',')
+})
 </script>
 
 <template>
@@ -13,11 +16,14 @@ const productStore = useProductStore()
     <img :src="product.image" alt="product.name" class="product__image" />
     <button class="product__info" @click="productStore.addToCart(product)">
       <span class="product__name">{{ product.name }}</span>
-     <span>
-      <p class="product__price">{{ `${product.price} PLN` }}</p>
-      <p class="product__vat">+ VAT 23%</p>
-      <P class="product__details">Szczegóły</P>
-     </span>
+      <span>
+        <span class="product__price">
+          <span class="product__price-value">{{ formattedPrice }}</span>
+          <span class="product__price-currency"> PLN</span>
+        </span>
+        <span class="product__vat">+ VAT 23%</span>
+        <span class="product__details">Szczegóły</span>
+      </span>
     </button>
   </div>
 </template>
@@ -52,16 +58,21 @@ const productStore = useProductStore()
       color: var(--gold);
     }
   }
+  &__price {
+    margin-bottom: 14px;
+    &-value {
+      font-size: 22px;
+    }
+  }
   &__name {
-    font-size: 16px;
+    line-height: 27px;
   }
-  &__price {
-    margin-bottom: 20px;
-    font-size: 22px;
-  }
+
   &__name,
-  &__price {
+  &__price,
+  &__vat {
     font-weight: 900;
+    display: block;
   }
   &__vat {
     font-size: 14px;

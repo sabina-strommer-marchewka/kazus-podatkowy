@@ -14,7 +14,13 @@ const width = computed(() => {
 const height = computed(() => {
   return props.product.icon === 'book' ? 22 : 28
 })
-console.log(props.product)
+
+const priceInteger = computed(() => {
+  return props.product.price.toFixed(2).split('.')[0]
+})
+const priceDecimal = computed(() => {
+  return props.product.price.toFixed(2).split('.')[1]
+})
 </script>
 
 <template>
@@ -41,7 +47,10 @@ console.log(props.product)
     </div>
     <div class="cart-product__price">
       <span class="cart-product__price-title">Cena</span>
-      <span class="cart-product__price-price">{{ product.price }}</span>
+      <span>
+        <span class="cart-product__price-integer">{{ `${priceInteger},` }}</span>
+        <span class="cart-product__price-decimal"> {{ `${priceDecimal} PLN` }}</span>
+      </span>
     </div>
   </div>
 </template>
@@ -84,8 +93,12 @@ console.log(props.product)
       font-size: 14px;
       font-weight: 300;
     }
-    &-price {
+    &-integer {
       font-size: 18px;
+      font-weight: 900;
+    }
+    &-decimal {
+      font-size: 15px;
       font-weight: 900;
     }
   }
