@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-  content: String,
+  content: [String, Number],
   bgColor: String,
   color: String,
 })

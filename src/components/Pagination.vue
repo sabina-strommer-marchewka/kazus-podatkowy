@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+
 import IconButton from './IconButton.vue'
+
 const numbers = ref([
   { value: 1, url: '#', current: false },
   { value: 2, url: '#', current: false },
@@ -11,7 +13,7 @@ const numbers = ref([
 </script>
 
 <template>
-  <nav aria-label="pagination" class="pagination">
+  <nav aria-label="Pagination" class="pagination">
     <IconButton
       icon-name="arrow-left"
       icon-color="var(--darkGrey)"
@@ -21,7 +23,7 @@ const numbers = ref([
       :bg-width="33"
       :bg-height="33"
       :is-rounded="false"
-      aria-label="Przejdź do poprzedniej strony z produktami"
+      aria-label="Przejdź do poprzedniej strony z produktami."
     />
     <ul class="pagination__links">
       <li v-for="(number, index) in numbers" :key="index">
@@ -43,7 +45,7 @@ const numbers = ref([
       :bg-width="33"
       :bg-height="33"
       :is-rounded="false"
-      aria-label="Przejdź do następnej strony z produktami"
+      aria-label="Przejdź do następnej strony z produktami."
     />
   </nav>
 </template>
@@ -53,10 +55,12 @@ const numbers = ref([
   display: flex;
   justify-content: center;
   padding-bottom: 74px;
+
   &__links {
     list-style-type: none;
     display: flex;
     gap: 10px;
+
     &-item {
       width: 33px;
       height: 33px;
@@ -68,6 +72,7 @@ const numbers = ref([
       display: flex;
       justify-content: center;
       align-items: center;
+
       &--current {
         background-color: var(--teal);
         color: var(--white);
@@ -77,10 +82,12 @@ const numbers = ref([
     }
   }
 }
+
 .icon-button {
   display: flex;
   justify-content: center;
   align-items: center;
+
   &--rounded {
     border-radius: 50%;
   }

@@ -10,7 +10,7 @@ export const useProductStore = defineStore('ProductStore', () => {
     cartProducts.value.push(product)
   }
 
-  function removeFromCart(product, index) {
+  function removeFromCart(index) {
     cartProducts.value.splice(index, 1)
   }
 

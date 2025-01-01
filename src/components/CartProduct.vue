@@ -1,12 +1,16 @@
 <script setup>
+import { computed } from 'vue'
+
+import { useProductStore } from '@/stores/products'
+
+import BaseIcon from './BaseIcon.vue'
+import IconButton from './IconButton.vue'
+
 const props = defineProps({
   product: Object,
   index: Number,
 })
-import { useProductStore } from '@/stores/products'
-import BaseIcon from './BaseIcon.vue'
-import { computed } from 'vue'
-import IconButton from './IconButton.vue'
+
 const productStore = useProductStore()
 const width = computed(() => {
   return props.product.icon === 'book' ? 31 : 21
@@ -14,7 +18,6 @@ const width = computed(() => {
 const height = computed(() => {
   return props.product.icon === 'book' ? 22 : 28
 })
-
 const priceInteger = computed(() => {
   return props.product.price.toFixed(2).split('.')[0]
 })
@@ -58,6 +61,7 @@ const priceDecimal = computed(() => {
 <style lang="scss" scoped>
 .cart-product {
   background-color: var(--snow-40);
+
   &__info {
     color: var(--teal);
     display: flex;
@@ -65,11 +69,13 @@ const priceDecimal = computed(() => {
     justify-content: space-between;
     border-bottom: 1px solid var(--snow);
     padding: 9px 19px 8px 11px;
+
     &-wrapper {
       display: flex;
       align-items: center;
       gap: 13px;
     }
+
     &-badge {
       background-color: var(--snow);
       min-width: 52px;
@@ -79,24 +85,30 @@ const priceDecimal = computed(() => {
       justify-content: center;
       align-items: center;
     }
+
     &-name {
       text-overflow: ellipsis;
       font-weight: 600;
       max-width: 178px;
     }
   }
+
   &__price {
     padding: 14px 21px 17px 23px;
     display: flex;
     justify-content: space-between;
+    color: var(--black);
+
     &-title {
       font-size: 14px;
       font-weight: 300;
     }
+
     &-integer {
       font-size: 18px;
       font-weight: 900;
     }
+
     &-decimal {
       font-size: 15px;
       font-weight: 900;

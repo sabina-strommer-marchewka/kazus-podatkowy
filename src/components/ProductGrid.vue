@@ -1,9 +1,12 @@
 <script setup>
 import { computed } from 'vue'
+
 import { useProductStore } from '@/stores/products'
-import Product from './Product.vue'
+
 import Pagination from './Pagination.vue'
+import Product from './Product.vue'
 import Wrapper from './Wrapper.vue'
+
 const store = useProductStore()
 const products = computed(() => store.products)
 </script>
@@ -26,17 +29,17 @@ const products = computed(() => store.products)
   margin: 0 256px;
 
   &__heading {
-    font-size: 2.625rem;
-    margin-bottom: 88.49px;
+    font-size: 42px;
+    margin-bottom: 88px;
     font-weight: 900;
   }
   &__product-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
     justify-content: space-between;
-    margin-bottom: 2rem;
+    margin-bottom: 32px;
     column-gap: 57px;
-    row-gap: 53.05px;
+    row-gap: 53px;
   }
 }
 </style>

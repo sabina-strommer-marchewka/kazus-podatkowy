@@ -1,8 +1,10 @@
 <script setup>
-import Cart from '../components/Cart.vue'
-import IconButton from '../components/IconButton.vue'
-import Wrapper from './Wrapper.vue'
 import { ref } from 'vue'
+
+import Cart from './Cart.vue'
+import CartModal from './CartModal.vue'
+import IconButton from './IconButton.vue'
+import Wrapper from './Wrapper.vue'
 
 const links = ref([
   { name: 'O Kazusie', url: '#', current: false },
@@ -65,6 +67,7 @@ const links = ref([
       </div>
     </Wrapper>
   </nav>
+  <CartModal />
 </template>
 
 <style lang="scss" scoped>
@@ -77,40 +80,46 @@ const links = ref([
   top: 0;
   z-index: 3;
   width: 100%;
+
   &__wrapper {
-    max-width: 1202px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
   }
+
   &__list-wrapper {
     display: flex;
     align-items: center;
     gap: 61px;
   }
+
   &__logo {
     width: 167px;
     height: 43px;
   }
+
   &__links {
     list-style-type: none;
     display: flex;
     gap: 13px;
+
     &-item {
       font-size: 14px;
       font-weight: 300;
       color: var(--black);
       padding: 12px;
+
       &:hover {
         color: var(--teal);
       }
+
       &--current {
         color: var(--teal);
       }
     }
   }
+  
   &__actions {
     list-style-type: none;
     display: flex;

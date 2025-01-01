@@ -40,28 +40,34 @@ import Wrapper from './Wrapper.vue'
   background-size: 448px 471px;
   position: relative;
   margin-bottom: 124px;
+
   &__content {
     display: flex;
     justify-content: space-between;
   }
+
   &__text {
     max-width: 562px;
   }
+
   &__heading {
     font-size: 54px;
     font-size: 700;
     padding-bottom: 32px;
   }
+
   &__description {
     font-weight: 700;
     line-height: 24px;
     padding-bottom: 24px;
   }
+
   &__subdescription {
     font-weight: 300;
     color: var(--snow);
     line-height: 24px;
   }
+  
   &__image {
     margin-top: -48px;
     margin-right: 11px;

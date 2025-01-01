@@ -1,12 +1,14 @@
 <script setup>
+import { computed } from 'vue'
+
 import { useProductStore } from '@/stores/products'
 import { useCartModalStore } from '@/stores/cartModal'
-import { computed } from 'vue'
-import IconButton from '../components/IconButton.vue'
-import Badge from '../components/Badge.vue'
+
+import IconButton from './IconButton.vue'
+import Badge from './Badge.vue'
+
 const productStore = useProductStore()
 const cartModalStore = useCartModalStore()
-
 const cartProducts = computed(() => productStore.cartProducts)
 </script>
 
@@ -39,6 +41,7 @@ const cartProducts = computed(() => productStore.cartProducts)
 <style lang="scss" scoped>
 .cart {
   position: relative;
+  
   &__badge {
     position: absolute;
     top: 7px;

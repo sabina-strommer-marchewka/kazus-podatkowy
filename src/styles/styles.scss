@@ -1,11 +1,7 @@
 @use '/src/styles/fonts.scss';
 
 :root {
-  font-size: 16px;
-  font-family: var(--font-primary);
-  --font-primary: 'roboto';
-  --font-secondary: 'aktiv-grotesk';
-
+  --fontPrimary: 'roboto';
   --white: #ffffff;
   --teal: #0a655e;
   --black: #2e3838;
@@ -14,8 +10,9 @@
   --darkShadow: #2e383826;
   --greenShadow: #00585112;
   --gold: #d1b352;
-  --overlay: #3E3E3E;
-  --snow-40: rgba(241, 245, 245, 0.4)
+  --overlay: #3e3e3e;
+  --snow-40: rgba(241, 245, 245, 0.4);
+  --darkGrey-35: rgba(110, 132, 132, 0.35);
 }
 
 * {
@@ -23,9 +20,15 @@
   padding: 0;
   border: 0;
   box-sizing: border-box;
+  font-family: var(--fontPrimary);
+
   &:focus-visible {
     outline: 2px solid var(--black);
   }
+}
+
+body {
+  font-size: 16px;
 }
 
 button {
@@ -33,10 +36,12 @@ button {
   cursor: pointer;
   color: unset;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

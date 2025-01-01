@@ -1,9 +1,13 @@
 <script setup>
-import CartProduct from './CartProduct.vue'
-import IconButton from './IconButton.vue'
+import { computed } from 'vue'
+
 import { useProductStore } from '@/stores/products'
 import { useCartModalStore } from '@/stores/cartModal'
-import { computed } from 'vue'
+
+import CartProduct from './CartProduct.vue'
+import IconButton from './IconButton.vue'
+import Wrapper from './Wrapper.vue'
+
 const productStore = useProductStore()
 const cartModalStore = useCartModalStore()
 const cartProducts = computed(() => productStore.cartProducts)
@@ -20,11 +24,9 @@ const totalPrice = computed(() => {
 const totalPriceInteger = computed(() => {
   return totalPrice.value.split('.')[0]
 })
-
 const totalPriceDecimal = computed(() => {
   return totalPrice.value.split('.')[1]
 })
-
 const classes = computed(() => {
   return {
     'cart-modal--visible': cartModalState.value === 'visible',
@@ -36,66 +38,69 @@ const overlayClasses = computed(() => {
     'cart-modal__overlay--visible': cartModalState.value === 'visible',
   }
 })
-
 const noProducts = computed(() => cartProducts.value.length === 0)
 </script>
 
 <template>
   <div class="cart-modal__overlay" :class="overlayClasses"></div>
-  <div
-    class="cart-modal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="dialogTitle"
-    :class="classes"
-  >
-    <div class="cart-modal__container">
-      <p id="dialogTitle" class="cart-modal__title">Twój koszyk</p>
-      <IconButton
-        icon-name="cancel"
-        icon-color="var(--white)"
-        :icon-width="15"
-        :icon-height="15"
-        bg-color="var(--teal)"
-        :bg-width="41"
-        :bg-height="41"
-        :is-rounded="false"
-        aria-label="Wyjdź z koszyka"
-        class="cart-modal__close"
-        @click="cartModalStore.toggleCartModal('hidden')"
-      />
-      <div class="cart-modal__product-list">
-        <CartProduct
-          v-for="(product, index) in cartProducts"
-          :key="index"
-          :index="index"
-          :product="product"
-          class="cart-modal__item"
-        />
-      </div>
-      <p v-if="noProducts">Twój koszyk jest pusty.</p>
-    </div>
-    <div v-if="!noProducts" class="cart-modal__summary">
-      <div class="cart-modal__summary-container">
-        <span class="cart-modal__summary-title">Łączna kwota</span>
-        <div class="cart-modal__summary-price">
-          <span>
-            <span class="cart-modal__summary-integer">{{ `${totalPriceInteger},` }}</span>
-            <span class="cart-modal__summary-decimal">{{ `${totalPriceDecimal} PLN` }}</span>
-          </span>
-          <span class="cart-modal__summary-vat">+ VAT 23%</span>
+  <div class="cart-modal__wrapper-container">
+    <Wrapper class="cart-modal__wrapper">
+      <div
+        class="cart-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialogTitle"
+        :class="classes"
+      >
+        <div class="cart-modal__container">
+          <p id="dialogTitle" class="cart-modal__title">Twój koszyk</p>
+          <IconButton
+            icon-name="cancel"
+            icon-color="var(--white)"
+            :icon-width="15"
+            :icon-height="15"
+            bg-color="var(--teal)"
+            :bg-width="41"
+            :bg-height="41"
+            :is-rounded="false"
+            aria-label="Wyjdź z koszyka"
+            class="cart-modal__close"
+            @click="cartModalStore.toggleCartModal('hidden')"
+          />
+          <div class="cart-modal__product-list">
+            <CartProduct
+              v-for="(product, index) in cartProducts"
+              :key="index"
+              :index="index"
+              :product="product"
+              class="cart-modal__item"
+            />
+          </div>
+          <p v-if="noProducts" class="cart-modal__empty-message">Twój koszyk jest pusty.</p>
+        </div>
+        <div v-if="!noProducts" class="cart-modal__summary">
+          <div class="cart-modal__summary-container">
+            <span class="cart-modal__summary-title">Łączna kwota</span>
+            <div class="cart-modal__summary-price">
+              <span>
+                <span class="cart-modal__summary-integer">{{ `${totalPriceInteger},` }}</span>
+                <span class="cart-modal__summary-decimal">{{ `${totalPriceDecimal} PLN` }}</span>
+              </span>
+              <span class="cart-modal__summary-vat">+ VAT 23%</span>
+            </div>
+          </div>
+          <button class="cart-modal__cart-button">Przejdź do koszyka</button>
         </div>
       </div>
-      <button class="cart-modal__cart">Przejdź do koszyka</button>
-    </div>
+    </Wrapper>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .cart-modal {
-  position: fixed;
+  position: absolute;
   top: -764px;
-  right: 365px;
+  right: 0;
   background-color: var(--white);
   width: 381px;
   height: 674px;
@@ -106,13 +111,25 @@ const noProducts = computed(() => cartProducts.value.length === 0)
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: top 0.4s;
 
   &--visible {
-    animation: slideIn 0.4s forwards;
+    top: 0;
   }
 
   &--hidden {
-    animation: slideOut 0.4s forwards;
+    top: -764px;
+  }
+
+  &__wrapper {
+    position: relative;
+
+    &-container {
+      position: fixed;
+      top: 90px;
+      z-index: 2;
+      width: 100%;
+    }
   }
 
   &__overlay {
@@ -123,12 +140,13 @@ const noProducts = computed(() => cartProducts.value.length === 0)
     height: 100%;
     background-color: var(--overlay);
     opacity: 0;
-    z-index: 1;
-    pointer-events: none;
+    z-index: 2;
     transition: opacity 0.4s;
+    pointer-events: none;
 
     &--visible {
       opacity: 60%;
+      pointer-events: all;
     }
   }
 
@@ -146,11 +164,17 @@ const noProducts = computed(() => cartProducts.value.length === 0)
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 16px;
+    color: var(--black);
+  }
+
+  &__empty-message {
+    color: var(--black);
   }
 
   &__summary {
-    border-top: 1px solid var(--darkGrey);
+    border-top: 1px solid var(--darkGrey-35);
     padding: 25px 34px 28px;
+    color: var(--black);
 
     &-container {
       display: flex;
@@ -186,7 +210,7 @@ const noProducts = computed(() => cartProducts.value.length === 0)
     }
   }
 
-  &__cart {
+  &__cart-button {
     text-transform: uppercase;
     background-color: var(--gold);
     color: var(--white);
@@ -194,28 +218,13 @@ const noProducts = computed(() => cartProducts.value.length === 0)
     padding-bottom: 16px;
     width: 100%;
     letter-spacing: 2.4px;
+    font-size: 16px;
   }
 
   &__close {
     position: absolute;
     top: 0;
     right: 0;
-  }
-}
-
-@keyframes slideIn {
-  100% {
-    top: 90px;
-  }
-}
-
-@keyframes slideOut {
-  0% {
-    top: 90px;
-  }
-
-  100% {
-    top: -764px;
   }
 }
 </style>

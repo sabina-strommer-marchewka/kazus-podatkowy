@@ -8,6 +8,7 @@
 
 <style lang="scss" scoped>
 .wrapper {
+  width: 100%;
   max-width: 1202px;
   margin: 0 auto;
 }

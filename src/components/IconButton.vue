@@ -1,5 +1,6 @@
 <script setup>
 import BaseIcon from './BaseIcon.vue'
+
 const props = defineProps({
   iconName: String,
   iconColor: String,
@@ -33,6 +34,7 @@ const props = defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
+  
   &--rounded {
     border-radius: 50%;
   }

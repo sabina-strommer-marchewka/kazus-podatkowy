@@ -1,7 +1,6 @@
 <script setup>
-import ProductGrid from './components/ProductGrid.vue'
 import Hero from './components/Hero.vue'
-import CartModal from './components/CartModal.vue'
+import ProductGrid from './components/ProductGrid.vue'
 import TheNavbar from './components/TheNavbar.vue'
 </script>
 
@@ -12,12 +11,12 @@ import TheNavbar from './components/TheNavbar.vue'
   <main class="main">
     <Hero />
     <ProductGrid />
-    <CartModal />
   </main>
 </template>
 
 <style lang="scss">
 @use './styles/styles.scss';
+
 .main {
   position: relative;
 }
